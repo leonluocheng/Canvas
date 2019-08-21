@@ -1,8 +1,7 @@
-﻿using System;
-namespace Canvas.Interfaces
+﻿namespace Canvas.Interfaces
 {
     public interface IStartUp
     {
-        void Run(string[] args);
+        void Run();
     }
 }
