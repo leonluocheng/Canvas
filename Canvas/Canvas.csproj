@@ -37,14 +37,30 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Interfaces\IValidator.cs" />
-    <Compile Include="Common\InputValidator.cs" />
+    <Compile Include="Interfaces\IParser.cs" />
+    <Compile Include="Common\InputParser.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Interfaces\IStartUp.cs" />
+    <Compile Include="Components\Canvas.cs" />
+    <Compile Include="Interfaces\ICanvas.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Commands\LineCommand.cs" />
+    <Compile Include="Commands\RectangleCommand.cs" />
+    <Compile Include="Commands\CanvasCommand.cs" />
+    <Compile Include="Commands\FillColorCommand.cs" />
+    <Compile Include="Components\Point.cs" />
+    <Compile Include="Exceptions\ErrorCommandException.cs" />
+    <Compile Include="Common\StringParser.cs" />
+    <Compile Include="Interfaces\IPrinter.cs" />
+    <Compile Include="Components\Printer.cs" />
+    <Compile Include="Exceptions\OutOfRangeException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Components\" />
+    <Folder Include="Commands\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

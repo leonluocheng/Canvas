@@ -10,8 +10,10 @@ namespace Canvas
         public static void Main(string[] args)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<InputValidator>().As<IValidator>();
+            builder.RegisterType<InputParser>().As<IParser>();
             builder.RegisterType<StartUp>().As<IStartUp>();
+            builder.RegisterType<Components.Canvas>().As<ICanvas>().SingleInstance();
+            builder.RegisterType<Components.Printer>().As<IPrinter>();
             Container = builder.Build();
 
             Run();
