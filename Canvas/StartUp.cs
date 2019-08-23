@@ -1,12 +1,11 @@
 ﻿using System;
 using Canvas.Interfaces;
-using Canvas.Commands;
 
 namespace Canvas
 {
     public class StartUp : IStartUp
     {
-        private IParser _parser;
+        private readonly IParser _parser;
         private ICommand _command;
         public StartUp(IParser parser)
         {
@@ -31,7 +30,6 @@ namespace Canvas
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    continue;
                 }
 
             }

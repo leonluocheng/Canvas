@@ -9,7 +9,7 @@ namespace Canvas.Common
     public class InputParser : IParser
     {
 
-        private ICanvas _canvas;
+        private readonly ICanvas _canvas;
         public InputParser(ICanvas canvas)
         {
             _canvas = canvas;
@@ -108,5 +108,3 @@ namespace Canvas.Common
         }
     }
 }
-
-

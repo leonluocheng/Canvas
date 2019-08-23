@@ -5,9 +5,9 @@ namespace Canvas.Commands
 {
     public class RectangleCommand : ICommand
     {
-        private ICanvas _canvas;
-        private Point _pointA;
-        private Point _poingB;
+        private readonly ICanvas _canvas;
+        private readonly Point _pointA;
+        private readonly Point _poingB;
 
         public RectangleCommand(ICanvas canvas, Point pointA, Point pointB)
         {

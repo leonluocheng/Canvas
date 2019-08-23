@@ -7,5 +7,6 @@ namespace Canvas.Interfaces
         void DrawLine(Point pointA, Point pointB);
         void DrawRectangle(Point pointA, Point pointB);
         void FillColor(Point point, char character);
+        char[,] GetBoard();
     }
 }

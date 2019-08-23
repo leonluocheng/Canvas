@@ -12,7 +12,7 @@ namespace Canvas
             var builder = new ContainerBuilder();
             builder.RegisterType<InputParser>().As<IParser>();
             builder.RegisterType<StartUp>().As<IStartUp>();
-            builder.RegisterType<Components.Canvas>().As<ICanvas>().SingleInstance();
+            builder.RegisterType<Components.MyCanvas>().As<ICanvas>().SingleInstance();
             builder.RegisterType<Components.Printer>().As<IPrinter>();
             Container = builder.Build();
 

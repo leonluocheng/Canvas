@@ -5,9 +5,9 @@ namespace Canvas.Commands
 {
     public class FillColorCommand : ICommand
     {
-        private ICanvas _canvas;
-        private Point _point;
-        private char _char;
+        private readonly ICanvas _canvas;
+        private readonly Point _point;
+        private readonly char _char;
 
         public FillColorCommand(ICanvas canvas, Point point, char character)
         {

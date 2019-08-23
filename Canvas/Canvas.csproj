@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -41,7 +41,7 @@
     <Compile Include="Common\InputParser.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Interfaces\IStartUp.cs" />
-    <Compile Include="Components\Canvas.cs" />
+    <Compile Include="Components\MyCanvas.cs" />
     <Compile Include="Interfaces\ICanvas.cs" />
     <Compile Include="Interfaces\ICommand.cs" />
     <Compile Include="Commands\LineCommand.cs" />
@@ -55,13 +55,7 @@
     <Compile Include="Components\Printer.cs" />
     <Compile Include="Exceptions\OutOfRangeException.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Components\" />
-    <Folder Include="Commands\" />
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

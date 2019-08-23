@@ -1,14 +1,12 @@
-﻿using System;
-using Canvas.Interfaces;
-using Canvas.Components;
+﻿using Canvas.Interfaces;
 
 namespace Canvas.Commands
 {
     public class CanvasCommand : ICommand
     {
-        private ICanvas _canvas;
-        private int _width;
-        private int _height;
+        private readonly ICanvas _canvas;
+        private readonly int _width;
+        private readonly int _height;
 
         public CanvasCommand(ICanvas canvas, int width, int height)
         {

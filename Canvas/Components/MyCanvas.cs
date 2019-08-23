@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace Canvas.Components
 {
-    public class Canvas : ICanvas
+    public class MyCanvas : ICanvas
     {
         private readonly IPrinter _printer;
-        private const char _defaultCharacter = 'x';
+        private const char DefaultCharacter = 'x';
         private char[,] _board;
 
-        public Canvas(IPrinter printer)
+        public MyCanvas(IPrinter printer)
         {
             _printer = printer;
         }
@@ -36,7 +36,7 @@ namespace Canvas.Components
 
                 for (var y = top; y <= bottom; y++)
                 {
-                    _board[pointA.X, y] = _defaultCharacter;
+                    _board[pointA.X-1, y] = DefaultCharacter;
                 }
             }
             else
@@ -46,7 +46,7 @@ namespace Canvas.Components
 
                 for (var x = left; x <= right; x++)
                 {
-                    _board[x, pointA.Y] = _defaultCharacter;
+                    _board[x, pointA.Y-1] = DefaultCharacter;
                 }
             }
 
@@ -62,23 +62,24 @@ namespace Canvas.Components
 
             for (var x = pointA.X - 1; x <= pointB.X - 1; x++)
             {
-                _board[x, pointA.Y - 1] = _defaultCharacter;
-                _board[x, pointB.Y - 1] = _defaultCharacter;
+                _board[x, pointA.Y - 1] = DefaultCharacter;
+                _board[x, pointB.Y - 1] = DefaultCharacter;
             }
 
             for (var y = pointA.Y - 1; y <= pointB.Y - 1; y++)
             {
-                _board[pointA.X - 1, y] = _defaultCharacter;
-                _board[pointB.X - 1, y] = _defaultCharacter;
+                _board[pointA.X - 1, y] = DefaultCharacter;
+                _board[pointB.X - 1, y] = DefaultCharacter;
             }
 
             Print();
         }
 
-        public void FillColor(Point point, char character)
+        public void FillColor(Point inputpoint, char character)
         {
+            var point = new Point{X = inputpoint.X -1, Y = inputpoint.Y -1 };
             if (!IsCanvasReady()) throw new ErrorCommandException("The canvas is not ready! Please create canvas first");
-            if (!IsPointValid(point)) throw new OutOfRangeException("Invalid point coordinate!");
+            if (!IsFillColorPointValid(point)) throw new OutOfRangeException("Invalid point coordinate!");
 
             //BFS
             var queue = new Queue<Point>();
@@ -90,28 +91,28 @@ namespace Canvas.Components
                 _board[center.X, center.Y] = character;
 
                 //move left
-                if (center.X - 1 >= 0 && _board[center.X - 1, center.Y] != character && _board[center.X - 1, center.Y] != _defaultCharacter)
+                if (center.X - 1 >= 0 && _board[center.X - 1, center.Y] != character && _board[center.X - 1, center.Y] != DefaultCharacter)
                 {
                     queue.Enqueue(new Point { X = center.X - 1, Y = center.Y });
                     _board[center.X - 1, center.Y] = character;
                 }
 
                 //move right
-                if (center.X + 1 < GetWidth() && _board[center.X + 1, center.Y] != character && _board[center.X + 1, center.Y] != _defaultCharacter)
+                if (center.X + 1 < GetWidth() && _board[center.X + 1, center.Y] != character && _board[center.X + 1, center.Y] != DefaultCharacter)
                 {
                     queue.Enqueue(new Point { X = center.X + 1, Y = center.Y });
                     _board[center.X + 1, center.Y] = character;
                 }
 
                 //move up
-                if (center.Y - 1 >= 0 && _board[center.X, center.Y - 1] != character && _board[center.X, center.Y - 1] != _defaultCharacter)
+                if (center.Y - 1 >= 0 && _board[center.X, center.Y - 1] != character && _board[center.X, center.Y - 1] != DefaultCharacter)
                 {
                     queue.Enqueue(new Point { X = center.X, Y = center.Y - 1 });
                     _board[center.X, center.Y - 1] = character;
                 }
 
                 //move down
-                if (center.Y + 1 < GetHeight() && _board[center.X, center.Y + 1] != character && _board[center.X, center.Y + 1] != _defaultCharacter)
+                if (center.Y + 1 < GetHeight() && _board[center.X, center.Y + 1] != character && _board[center.X, center.Y + 1] != DefaultCharacter)
                 {
                     queue.Enqueue(new Point { X = center.X, Y = center.Y + 1 });
                     _board[center.X, center.Y + 1] = character;
@@ -119,6 +120,11 @@ namespace Canvas.Components
             }
 
             Print();
+        }
+
+        public char[,] GetBoard()
+        {
+            return _board;
         }
 
         private void Print()
@@ -168,7 +174,12 @@ namespace Canvas.Components
 
         private bool IsPointValid(Point point)
         {
-            return point.X >= 1 && point.X <= GetWidth() && (point.Y >= 1 && point.Y <= GetHeight());
+            return point.X >= 1 && point.X <= GetWidth() && point.Y >= 1 && point.Y <= GetHeight();
+        }
+
+        private bool IsFillColorPointValid(Point point)
+        {
+            return point.X >= 0 && point.X < GetWidth() && point.Y >= 0 && point.Y < GetHeight();
         }
 
         private int GetWidth()
